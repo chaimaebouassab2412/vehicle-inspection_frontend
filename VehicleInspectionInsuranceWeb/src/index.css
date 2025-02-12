@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
 
 html {
   scroll-behavior: smooth;

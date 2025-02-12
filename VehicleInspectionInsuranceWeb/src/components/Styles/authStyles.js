@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-
 export const AuthContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; 
   width: 100vw;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  background: ${({ theme }) =>
+    theme === "dark"
+      ? "linear-gradient(135deg, #000, #f9d71c)" /* Black and yellow */
+      : "linear-gradient(135deg, #f9d71c, #fff)"}; /* Yellow and white */
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
 `;
+
 
 export const AuthCard = styled(motion.div)`
   background: white;
@@ -36,19 +39,23 @@ export const FormInput = styled.input`
   border: 2px solid #e1e1e1;
   border-radius: 8px;
   font-size: 1rem;
+  color: black; /* Set the text color to black */
+  background-color: white; /* Ensure background is white */
   transition: border-color 0.3s ease;
 
   &:focus {
-    border-color: #1e3c72;
+    border-color: #1e3c72; /* Adjust focus border color */
     outline: none;
   }
 `;
 
+
 export const FormButton = styled(motion.button)`
   width: 100%;
   padding: 12px;
-  background: #1e3c72;
-  color: white;
+  background: ${({ theme }) =>
+    theme === "dark" ? "#000" : "#f9d71c"}; /* Black for dark, Yellow for light */
+  color: ${({ theme }) => (theme === "dark" ? "#f9d71c" : "#000")};
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -60,6 +67,7 @@ export const FormButton = styled(motion.button)`
     cursor: not-allowed;
   }
 `;
+
 
 export const ErrorMessage = styled.div`
   color: #ff3333;

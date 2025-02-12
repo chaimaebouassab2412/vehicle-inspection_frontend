@@ -71,6 +71,8 @@ const App = () => {
           <Route path="/appstore" element={<AppStoreBanner />} /> {/* App Store */}
           <Route path="/contact" element={<Contact />} /> {/* Contact */}
           <Route path="/auth" element={<Auth />} /> {/* Login/Signup */}
+          <Route path="/auth" element={<Auth theme={theme} />} />
+
         </Routes>
 
         {/* Footer is always present */}
