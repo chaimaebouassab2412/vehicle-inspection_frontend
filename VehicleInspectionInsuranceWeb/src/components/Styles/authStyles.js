@@ -5,9 +5,12 @@ export const AuthContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh; 
+  width: 100vw;
   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
   padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 `;
 
 export const AuthCard = styled(motion.div)`
