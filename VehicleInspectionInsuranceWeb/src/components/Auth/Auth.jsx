@@ -14,17 +14,17 @@ import {
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('Email invalide')
-    .required('L\'email est requis'),
+    .email('Invalid email')
+    .required('Email is required'),
   password: Yup.string()
-    .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
-    .required('Le mot de passe est requis'),
+    .min(8, 'Password must be at least 8 characters long')
+    .required('Password is required'),
   confirmPassword: Yup.string()
     .when('isSignup', {
       is: true,
       then: Yup.string()
-        .oneOf([Yup.ref('password')], 'Les mots de passe doivent correspondre')
-        .required('La confirmation du mot de passe est requise'),
+        .oneOf([Yup.ref('password')], 'Passwords must match')
+        .required('Password confirmation is required'),
     }),
 });
 
@@ -52,7 +52,7 @@ const Auth = () => {
           transition={{ duration: 0.3 }}
         >
           <FormTitle>
-            {isSignup ? 'Créer un compte' : 'Connexion'}
+            {isSignup ? 'Create an Account' : 'Login'}
           </FormTitle>
           <Formik
             initialValues={{
@@ -92,7 +92,7 @@ const Auth = () => {
                   <FormInput
                     type="password"
                     name="password"
-                    placeholder="Mot de passe"
+                    placeholder="Password"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.password}
@@ -107,7 +107,7 @@ const Auth = () => {
                     <FormInput
                       type="password"
                       name="confirmPassword"
-                      placeholder="Confirmer le mot de passe"
+                      placeholder="Confirm Password"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.confirmPassword}
@@ -125,10 +125,10 @@ const Auth = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting
-                    ? 'Chargement...'
+                    ? 'Loading...'
                     : isSignup
-                    ? 'S\'inscrire'
-                    : 'Se connecter'}
+                    ? 'Sign Up'
+                    : 'Login'}
                 </FormButton>
               </form>
             )}
@@ -136,8 +136,8 @@ const Auth = () => {
 
           <SwitchLink onClick={toggleMode}>
             {isSignup
-              ? 'Déjà un compte ? Se connecter'
-              : 'Pas de compte ? S\'inscrire'}
+              ? 'Already have an account? Login'
+              : 'Don’t have an account? Sign Up'}
           </SwitchLink>
         </AuthCard>
       </AnimatePresence>
@@ -145,4 +145,4 @@ const Auth = () => {
   );
 };
 
-export default Auth; 
+export default Auth;

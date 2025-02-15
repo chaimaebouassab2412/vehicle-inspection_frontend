@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { BiSolidSun, BiSolidMoon } from "react-icons/bi";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import ResponsiveMenu from "./ResponsiveMenu";
+import { Link } from "react-router-dom";
 
 // Updated Navigation Links
 export const Navlinks = [
   {
     id: 1,
     name: "HOME",
-    link: "/#",
+    link: "/",
   },
   {
     id: 2,
@@ -35,60 +36,67 @@ const Navbar = ({ theme, setTheme }) => {
   };
 
   return (
-    <div
-      className="relative z-10 shadow-md w-full dark:bg-black dark:text-white duration-300"
-    >
+    <header className="relative z-10 shadow-md w-full dark:bg-black dark:text-white duration-300">
       <div className="container py-2 md:py-0">
         <div className="flex justify-between items-center">
-          {/* Updated Title */}
-          <div className="flex items-center gap-2">
-  <img src="/src/assets/car1.png" alt="Car Icon" className="w-16 h-16" />
-  <span className="text-3xl font-bold font-serif">Car Inspection</span>
-</div>
+          {/* Logo and Title */}
+          <Link to="/" className="flex items-center gap-4">
+            <img
+              src="/src/assets/logo_car-removebg-preview.png"
+              alt="Car Icon"
+              className="h-24 w-auto"
+            />
+            <span
+              className="text-3xl font-bold font-serif text-[#0092b1]"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              Car Inspection
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex items-center gap-8">
               {Navlinks.map(({ id, name, link }) => (
                 <li key={id} className="py-4">
-                  <a
-                    href={link}
-                    className="text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary transition-colors duration-500"
+                  <Link
+                    to={link}
+                    className="text-lg font-medium hover:text-[#0092b1] py-2 hover:border-b-2 hover:border-[#0092b1] transition-colors duration-500"
                   >
                     {name}
-                  </a>
+                  </Link>
                 </li>
               ))}
               {/* Dark Mode Toggle */}
-              {theme === "dark" ? (
-                <BiSolidSun
-                  onClick={() => setTheme("light")}
-                  className="text-2xl cursor-pointer"
-                />
-              ) : (
-                <BiSolidMoon
-                  onClick={() => setTheme("dark")}
-                  className="text-2xl cursor-pointer"
-                />
-              )}
+              <li className="py-4">
+                {theme === "dark" ? (
+                  <BiSolidSun
+                    onClick={() => setTheme("light")}
+                    className="text-2xl cursor-pointer text-[#0092b1]"
+                  />
+                ) : (
+                  <BiSolidMoon
+                    onClick={() => setTheme("dark")}
+                    className="text-2xl cursor-pointer text-[#0092b1]"
+                  />
+                )}
+              </li>
             </ul>
           </nav>
 
           {/* Mobile Navigation */}
           <div className="flex items-center gap-4 md:hidden">
-            {/* Dark Mode Toggle */}
             {theme === "dark" ? (
               <BiSolidSun
                 onClick={() => setTheme("light")}
-                className="text-2xl cursor-pointer"
+                className="text-2xl cursor-pointer text-[#0092b1]"
               />
             ) : (
               <BiSolidMoon
                 onClick={() => setTheme("dark")}
-                className="text-2xl cursor-pointer"
+                className="text-2xl cursor-pointer text-[#0092b1]"
               />
             )}
-            {/* Hamburger Icon */}
             {showMenu ? (
               <HiMenuAlt1
                 onClick={toggleMenu}
@@ -106,8 +114,8 @@ const Navbar = ({ theme, setTheme }) => {
         </div>
       </div>
       {/* Responsive Menu */}
-      <ResponsiveMenu showMenu={showMenu} />
-    </div>
+      {showMenu && <ResponsiveMenu showMenu={showMenu} />}
+    </header>
   );
 };
 

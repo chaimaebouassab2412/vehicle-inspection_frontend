@@ -8,8 +8,8 @@ export const AuthContainer = styled.div`
   width: 100vw;
   background: ${({ theme }) =>
     theme === "dark"
-      ? "linear-gradient(135deg, #000, #f9d71c)" /* Black and yellow */
-      : "linear-gradient(135deg, #f9d71c, #fff)"}; /* Yellow and white */
+      ? "linear-gradient(135deg, #000, #0092b1)" /* Black and yellow */
+      : "linear-gradient(135deg, #0092b1, #fff)"}; /* Yellow and white */
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
@@ -54,8 +54,8 @@ export const FormButton = styled(motion.button)`
   width: 100%;
   padding: 12px;
   background: ${({ theme }) =>
-    theme === "dark" ? "#000" : "#f9d71c"}; /* Black for dark, Yellow for light */
-  color: ${({ theme }) => (theme === "dark" ? "#f9d71c" : "#000")};
+    theme === "dark" ? "#000" : "#0092b1"}; /* Black for dark, Yellow for light */
+  color: ${({ theme }) => (theme === "dark" ? "#0092b1" : "#000")};
   border: none;
   border-radius: 8px;
   font-size: 1rem;
