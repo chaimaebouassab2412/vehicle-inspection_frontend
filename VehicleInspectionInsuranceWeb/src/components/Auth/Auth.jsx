@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios";
+
 import { AnimatePresence } from 'framer-motion';
 import {
   AuthContainer,
@@ -31,11 +33,35 @@ const validationSchema = Yup.object().shape({
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setTimeout(() => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const endpoint = isSignup
+        ? "http://localhost:2018/api/utilisateurs/register"
+        : "http://localhost:2018/api/utilisateurs/login";
+
+      // Make Axios POST request
+      const response = await axios.post(endpoint, {
+        email: values.email,
+        password: values.password,
+        ...(isSignup && { confirmPassword: values.confirmPassword }), // Include confirmPassword for signup
+      });
+
+      console.log("Response:", response.data);
+
+      // Handle success (e.g., save token, navigate to dashboard)
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token); // Save token in localStorage
+        alert("Success! Redirecting...");
+        // Redirect logic here
+      }
+
+      resetForm();
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Something went wrong");
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   const toggleMode = () => {
