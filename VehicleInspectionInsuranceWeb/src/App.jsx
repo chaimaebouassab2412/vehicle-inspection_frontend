@@ -32,9 +32,9 @@ const App = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
-  const element = document.documentElement;
 
   useEffect(() => {
+    const element = document.documentElement;
     if (theme === "dark") {
       element.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -52,13 +52,12 @@ const App = () => {
       easing: "ease-in-sine",
       delay: 100,
     });
-    AOS.refresh();
   }, []);
 
   return (
     <Router>
       <div className="bg-white dark:bg-black dark:text-white text-black overflow-x-hidden">
-      <Navbar theme={theme} setTheme={setTheme} />
+        <Navbar theme={theme} setTheme={setTheme} />
 
         {/* User Layout */}
         <div className="main-app">
@@ -67,14 +66,12 @@ const App = () => {
               path="/"
               element={
                 <>
-                  <Navbar theme={theme} setTheme={setTheme} />
                   <Hero theme={theme} />
                   <About />
                   <Services />
                   <Testimonial />
                   <AppStoreBanner />
                   <Contact />
-                  <Footer />
                 </>
               }
             />
@@ -85,8 +82,6 @@ const App = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/auth" element={<Auth theme={theme} />} />
           </Routes>
-          <Footer />
-
         </div>
 
         {/* Admin Layout */}
@@ -102,6 +97,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
+
+        <Footer />
       </div>
     </Router>
   );
