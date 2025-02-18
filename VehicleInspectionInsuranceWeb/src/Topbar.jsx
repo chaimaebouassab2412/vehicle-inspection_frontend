@@ -19,7 +19,7 @@ function Topbar() {
                     <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
                         aria-label="Search" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" type="button">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-tl-[0px] rounded-bl-[0px] rounded-tr-[10px] rounded-br-[10px]" type="button">
                             <FontAwesomeIcon icon={faSearch} />
                         </button>
                     </div>
