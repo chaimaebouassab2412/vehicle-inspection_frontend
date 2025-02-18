@@ -61,7 +61,7 @@ const Testimonial = () => {
                   <img
                     src={testimonial.image}
                     alt={`${testimonial.name}'s Testimonial`}
-                    className="rounded-full w-20 h-20"
+                    className="rounded-full w-20 h-20 object-cover object-center"
                   />
                 </div>
                 <div className="text-2xl">⭐⭐⭐⭐⭐</div>
