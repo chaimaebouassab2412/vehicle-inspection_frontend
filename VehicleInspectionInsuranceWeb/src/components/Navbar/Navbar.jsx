@@ -47,7 +47,7 @@ const Navbar = ({ theme, setTheme }) => {
               className="h-24 w-auto"
             />
             <span
-              className="text-3xl font-bold font-serif text-[#0092b1]"
+              className="text-2xl font-bold font-serif text-[#0092b1]"
               style={{ fontFamily: "Poppins, sans-serif" }}
             >
               Car Inspection
@@ -56,7 +56,7 @@ const Navbar = ({ theme, setTheme }) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-5">
               {Navlinks.map(({ id, name, link }) => (
                 <li key={id} className="py-4">
                   <Link

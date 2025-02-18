@@ -8,7 +8,7 @@ const Contact = () => {
         <div className="container">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 bg-gray-800 py-8 px-6">
             <div className="col-span-2 space-y-3">
-              <h1 className="text-4xl sm:text-5xl font-bold text-white">
+              <h1 className="text-3xl sm:text-4xl font-bold text-white">
                 Ensure Your Vehicle is Road-Ready with Our Expert Services!
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 font-medium leading-relaxed">

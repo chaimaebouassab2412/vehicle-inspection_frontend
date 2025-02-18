@@ -42,7 +42,7 @@ function Userlist() {
   };
 
   return (
-    <div className="h-screen w-screen bg-white text-black flex flex-col p-4 sm:p-6">
+    <div className="h-screen bg-white text-black flex flex-col p-4 sm:p-6 w-full">
       <div className="bg-[#0092b1] text-white flex flex-wrap justify-center items-center p-3 sm:p-4 mb-4 rounded shadow-md gap-3">
         <h1 className="text-2xl sm:text-3xl font-bold bg-white text-black text-center p-2 rounded shadow-md flex-1">
           User-List

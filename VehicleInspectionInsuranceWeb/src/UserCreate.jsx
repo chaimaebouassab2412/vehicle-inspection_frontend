@@ -59,8 +59,6 @@ function UserCreate() {
           alert("Validation failed");
           setLoading(false);
         }
-
-        console.log(values);
       }
 
     });
@@ -125,7 +123,7 @@ function UserCreate() {
           </div>
 
           <div className='col-lg-4 mt-3'>
-            <input disabled={isLoading} type="submit" value={isLoading ? "Submitting..." : "Create"} className=' btn btn-primary' />
+            <input disabled={isLoading} type="submit" value={isLoading ? "Submitting..." : "Create"} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' />
           </div>
         </div>
       </form>
