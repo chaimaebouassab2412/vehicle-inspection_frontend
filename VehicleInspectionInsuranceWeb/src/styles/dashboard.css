@@ -1,0 +1,32 @@
+.border-left-primary {
+  border-left: 4px solid #4e73df !important;
+}
+
+.border-left-success {
+  border-left: 4px solid #1cc88a !important;
+}
+
+.border-left-warning {
+  border-left: 4px solid #f6c23e !important;
+}
+
+.border-left-danger {
+  border-left: 4px solid #e74a3b !important;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.badge {
+  font-size: 0.8em;
+  padding: 0.35em 0.65em;
+}
+
+.btn-group .btn {
+  margin: 0 2px;
+} 

@@ -10,7 +10,7 @@ function Userlist() {
 
   useEffect(() => {
     getUsers();
-    console.log("welcome");
+    console.log("Fetching user data...");
   }, []);
 
   let getUsers = async () => {
@@ -28,7 +28,7 @@ function Userlist() {
   let handleDelete = async (id) => {
     try {
       const confirmDelete = window.confirm(
-        "Are you sure do you want to delete the data?"
+        "Are you sure you want to delete this user?"
       );
       if (confirmDelete) {
         await axios.delete(
@@ -70,49 +70,27 @@ function Userlist() {
             <table className="w-full border border-gray-400 text-black bg-white">
               <thead className="bg-gray-200">
                 <tr>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    Id
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    Name
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    E-Mail
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    City
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    State
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    Country
-                  </th>
-                  <th className="p-2 border border-gray-400 whitespace-nowrap">
-                    Action
-                  </th>
+                  <th className="p-2 border border-gray-400">Id</th>
+                  <th className="p-2 border border-gray-400">Name</th>
+                  <th className="p-2 border border-gray-400">E-Mail</th>
+                  <th className="p-2 border border-gray-400">Matricule</th>
+                  <th className="p-2 border border-gray-400">Car Model</th>
+                  <th className="p-2 border border-gray-400">Inspection Date</th>
+                  <th className="p-2 border border-gray-400">Inspection Status</th>
+                  <th className="p-2 border border-gray-400">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {userList.map((user) => {
                   return (
-                    <tr className="hover:bg-gray-100">
+                    <tr className="hover:bg-gray-100" key={user.id}>
                       <td className="p-2 border border-gray-400">{user.id}</td>
-                      <td className="p-2 border border-gray-400">
-                        {user.username}
-                      </td>
-                      <td className="p-2 border border-gray-400">
-                        {user.email}
-                      </td>
-                      <td className="p-2 border border-gray-400">
-                        {user.city}
-                      </td>
-                      <td className="p-2 border border-gray-400">
-                        {user.state}
-                      </td>
-                      <td className="p-2 border border-gray-400">
-                        {user.country}
-                      </td>
+                      <td className="p-2 border border-gray-400">{user.username}</td>
+                      <td className="p-2 border border-gray-400">{user.email}</td>
+                      <td className="p-2 border border-gray-400">{user.matricule}</td>
+                      <td className="p-2 border border-gray-400">{user.carModel}</td>
+                      <td className="p-2 border border-gray-400">{user.inspectionDate}</td>
+                      <td className="p-2 border border-gray-400">{user.inspectionStatus}</td>
                       <td className="p-2 border border-gray-400 flex flex-wrap space-x-2">
                         <Link
                           to={`/portal/user-view/${user.id}`}
