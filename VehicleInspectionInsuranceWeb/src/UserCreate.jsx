@@ -1,135 +1,206 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LucideUser, LucideMail, LucideCalendar, LucideMapPin, LucideGlobe, LucideLoader2 } from 'lucide-react';
+
+// Component réutilisable pour les inputs
+const InputComponent = ({ label, name, value, onChange, type, placeholder, error, icon: Icon }) => (
+  <div className="relative">
+    <label className="block text-sm font-medium text-[#4a5568] dark:text-[#a0aec0] mb-1">{label}</label>
+    <div className="flex items-center">
+      <Icon className="absolute left-3 text-[#a0aec0] dark:text-[#a0aec0]" size={20} />
+      {type === 'select' ? (
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#4299e1] dark:focus:ring-[#ffffff] focus:border-transparent bg-[#fff] dark:bg-[#1f2937] border-[#e2e8f0] dark:border-[#1f2937] text-[#2d3748] dark:text-[#fff] ${error ? "border-[#f56565] dark:border-[#f56565]" : ""}`}
+        >
+          {name === 'status' ? (
+            <>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </>
+          ) : null}
+        </select>
+      ) : (
+        <input
+          name={name}
+          value={value}
+          onChange={onChange}
+          type={type}
+          className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#4299e1] dark:focus:ring-[#ffffff] focus:border-transparent bg-[#fff] dark:bg-[#1f2937] border-[#e2e8f0] dark:border-[#1f2937] text-[#2d3748] dark:text-[#fff] ${error ? "border-[#f56565] dark:border-[#f56565]" : ""}`}
+          placeholder={placeholder}
+        />
+      )}
+    </div>
+    {error && <span className="text-[#f56565] dark:text-[#f56565] text-sm mt-1 block">{error}</span>}
+  </div>
+);
 
 function UserCreate() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const myFormik = useFormik(
-    {
-      initialValues: {
-        username: "",
-        email: "",
-        city: "",
-        state: "",
-        country: ""
-      },
-      // Validating Forms while entering the data
-      validate: (values) => {
-        let errors = {}           //Validating the form once the error returns empty else onsubmit won't work
+  const myFormik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      registration: "",
+      date: "",
+      car_model: "",
+      status: "active"
+    },
+    validate: (values) => {
+      let errors = {};
 
-        if (!values.username) {
-          errors.username = "Please enter username";
-        } else if (values.username.length < 5) {
-          errors.username = "Name shouldn't be less than 3 letters";
-        } else if (values.username.length > 20) {
-          errors.username = "Name shouldn't be more than 20 letters";
-        }
-
-        if (!values.email) {
-          errors.email = "Please enter email";
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-          errors.email = 'Invalid email address';
-        }
-
-        if (!values.city) {
-          errors.city = "Please select any one city";
-        }
-
-        if (!values.state) {
-          errors.state = "Please select any one state";
-        }
-
-        if (!values.country) {
-          errors.country = "Please select any one state";
-        }
-
-        return errors;
-      },
-      //one can be able to submit once the validates returns empty value (validation successful) else can't be submitted
-      onSubmit: async (values) => {
-        try {
-          setLoading(true);
-          await axios.post("https://63a9bccb7d7edb3ae616b639.mockapi.io/users", values);
-          navigate("/portal/user-list");
-        } catch (error) {
-          console.log(error);
-          alert("Validation failed");
-          setLoading(false);
-        }
+      if (!values.username) {
+        errors.username = "Please enter a username";
+      } else if (values.username.length < 5) {
+        errors.username = "Username must be at least 5 characters";
+      } else if (values.username.length > 20) {
+        errors.username = "Username must not exceed 20 characters";
       }
 
-    });
+      if (!values.email) {
+        errors.email = "Please enter an email";
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = "Invalid email address";
+      }
+
+      if (!values.registration) {
+        errors.registration = "Please enter a registration";
+      }
+
+      if (!values.date) {
+        errors.date = "Please enter a date";
+      } else if (!/^\d{4}-\d{2}-\d{2}$/.test(values.date)) {
+        errors.date = "Please enter date in YYYY-MM-DD format";
+      }
+
+      if (!values.car_model) {
+        errors.car_model = "Please enter a car model";
+      }
+
+      if (!values.status) {
+        errors.status = "Please select a status";
+      }
+
+      return errors;
+    },
+    onSubmit: async (values) => {
+      try {
+        setLoading(true);
+        await axios.post("https://67b62e7d07ba6e5908400357.mockapi.io/users", values);
+        navigate("/portal/user-list");
+      } catch (error) {
+        console.log(error);
+        alert("Validation failed");
+        setLoading(false);
+      }
+    }
+  });
+
   return (
-    <div className='container p-5'>
+    <div className="min-h-screen bg-gradient-to-br from-[#f7fafc] to-[#edf2f7] dark:from-[#111827] dark:to-[#1a202c] flex items-center justify-center p-4">
+      <div className="bg-[#fff] dark:bg-[#111827] rounded-xl shadow-2xl p-8 w-full max-w-4xl transform transition-all duration-300 hover:shadow-lg">
+        <h2 className="text-3xl font-bold text-[#2d3748] dark:text-[#fff] mb-6 text-center">Create New User</h2>
+        
+        <form onSubmit={myFormik.handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Username */}
+          <InputComponent
+            label="Username"
+            name="username"
+            value={myFormik.values.username}
+            onChange={myFormik.handleChange}
+            type="text"
+            placeholder="Enter username"
+            error={myFormik.errors.username}
+            icon={LucideUser}
+          />
 
-      <form onSubmit={myFormik.handleSubmit}>
-        <div className='row'>
-          <div className="col-lg-6">
-            <label>Name</label>
-            <input name='username' value={myFormik.values.username} onChange={myFormik.handleChange} type={"text"}
-              className={`form-control ${myFormik.errors.username ? "is-invalid" : ""} `} />
-            <span style={{ color: "red" }}>{myFormik.errors.username}</span>
-          </div>
+          {/* Email */}
+          <InputComponent
+            label="Email"
+            name="email"
+            value={myFormik.values.email}
+            onChange={myFormik.handleChange}
+            type="email"
+            placeholder="your.email@example.com"
+            error={myFormik.errors.email}
+            icon={LucideMail}
+          />
 
-          <div className="col-lg-6">
-            <label>E-Mail</label>
-            <input name='email' value={myFormik.values.email} onChange={myFormik.handleChange} type={"mail"}
-              className={`form-control ${myFormik.errors.email ? "is-invalid" : ""} `} />
-            <span style={{ color: "red" }}>{myFormik.errors.email}</span>
-          </div>
+          {/* Registration */}
+          <InputComponent
+            label="Registration"
+            name="registration"
+            value={myFormik.values.registration}
+            onChange={myFormik.handleChange}
+            type="text"
+            placeholder="Enter registration"
+            error={myFormik.errors.registration}
+            icon={LucideMapPin}
+          />
 
-          <div className='col-lg-4'>
-            <label>City</label>
-            <select name='city' value={myFormik.values.city} onChange={myFormik.handleChange}
-              className={`form-control ${myFormik.errors.city ? "is-invalid" : ""} `} >
-              <option value="">----Select----</option>
-              <option value="CN">Chennai</option>
-              <option value="KN">Kochin</option>
-              <option value="MU">Mumbai</option>
-              <option value="SA">Seattle</option>
-              <option value="MI">Miami</option>
-              <option value="VB">Virginia Beach</option>
-            </select>
-            <span style={{ color: "red" }}>{myFormik.errors.city}</span>
-          </div>
+          {/* Date */}
+          <InputComponent
+            label="Date"
+            name="date"
+            value={myFormik.values.date}
+            onChange={myFormik.handleChange}
+            type="text"
+            placeholder="YYYY-MM-DD"
+            error={myFormik.errors.date}
+            icon={LucideCalendar}
+          />
 
-          <div className='col-lg-4'>
-            <label>State</label>
-            <select name='state' value={myFormik.values.state} onChange={myFormik.handleChange}
-              className={`form-control ${myFormik.errors.state ? "is-invalid" : ""} `} >
-              <option value="">----Select----</option>
-              <option value="TN">TamilNadu</option>
-              <option value="KL">Kerala</option>
-              <option value="MH">Maharashtra</option>
-              <option value="WA">Washington</option>
-              <option value="FL">Florida</option>
-              <option value="VA">Virginia</option>
-            </select>
-            <span style={{ color: "red" }}>{myFormik.errors.state}</span>
-          </div>
+          {/* Car Model */}
+          <InputComponent
+            label="Car Model"
+            name="car_model"
+            value={myFormik.values.car_model}
+            onChange={myFormik.handleChange}
+            type="text"
+            placeholder="Enter car model"
+            error={myFormik.errors.car_model}
+            icon={LucideGlobe}
+          />
 
-          <div className='col-lg-4'>
-            <label>Country</label>
-            <select name='country' value={myFormik.values.country} onChange={myFormik.handleChange}
-              className={`form-control ${myFormik.errors.country ? "is-invalid" : ""} `} >
-              <option value="">----Select----</option>
-              <option value="IN">India</option>
-              <option value="US">USA</option>
-            </select>
-            <span style={{ color: "red" }}>{myFormik.errors.country}</span>
-          </div>
+          {/* Status */}
+          <InputComponent
+            label="Status"
+            name="status"
+            value={myFormik.values.status}
+            onChange={myFormik.handleChange}
+            type="select"
+            placeholder=""
+            error={myFormik.errors.status}
+            icon={LucideGlobe}
+          />
 
-          <div className='col-lg-4 mt-3'>
-            <input disabled={isLoading} type="submit" value={isLoading ? "Submitting..." : "Create"} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' />
+          {/* Submit Button */}
+          <div className="md:col-span-2 flex justify-center">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full max-w-xs bg-[#4299e1] hover:bg-[#3182ce] dark:bg-[#4a5568] dark:hover:bg-[#383f4a] text-[#fff] font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 disabled:bg-[#a0aec0] disabled:cursor-not-allowed"
+            >
+              {isLoading ? (
+                <>
+                  <LucideLoader2 className="animate-spin" size={20} />
+                  <span>Submitting...</span>
+                </>
+              ) : (
+                "Create"
+              )}
+            </button>
           </div>
-        </div>
-      </form>
-      {/* {JSON.stringify(myFormik.values)} */}
+        </form>
+      </div>
     </div>
   );
 }
 
-export default UserCreate
+export default UserCreate;
