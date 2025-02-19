@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function Topbar() {
     return (
-        <nav className="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+        <nav className="navbar navbar-expand navbar-light dark:bg-[#303030] bg-[#fff] transition-all duration-200 topbar static-top shadow">
             {/* <!-- Sidebar Toggle (Topbar) --> */}
             <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                 <FontAwesomeIcon icon={faBars} />

@@ -27,6 +27,7 @@ import UserCreate from "./UserCreate";
 import UserView from "./UserView";
 import UserEdit from "./UserEdit";
 import CarCreate from "./CarCreate";
+import VehicleList from "./CarList";
 
 const App = () => {
   // Dark mode start
@@ -73,6 +74,7 @@ const App = () => {
                   <Testimonial />
                   <AppStoreBanner />
                   <Contact />
+                  <Footer />
                 </>
               }
             />
@@ -88,20 +90,19 @@ const App = () => {
         {/* Admin Layout */}
         <div className="admin-app">
           <Routes>
-            <Route path="/portal" element={<Portal />}>
+            <Route path="/portal" element={<Portal theme={theme} />}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="user-list" element={<Userlist />} />
               <Route path="create-user" element={<UserCreate />} />
               <Route path="user-view/:id" element={<UserView />} />
               <Route path="user-edit/:id" element={<UserEdit />} />
 
+              <Route path="car-list" element={<VehicleList theme={theme} />} />
               <Route path="create-car" element={<CarCreate theme={theme} />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
-
-        <Footer />
       </div>
     </Router>
   );

@@ -36,7 +36,7 @@ const Navbar = ({ theme, setTheme }) => {
   };
 
   return (
-    <header className="relative z-10 shadow-md w-full dark:bg-black dark:text-white duration-300">
+    <header className="relative z-10 shadow-md w-full dark:bg-[#1d1d1d] dark:text-white duration-300">
       <div className="container py-2 md:py-0">
         <div className="flex justify-between items-center">
           {/* Logo and Title */}

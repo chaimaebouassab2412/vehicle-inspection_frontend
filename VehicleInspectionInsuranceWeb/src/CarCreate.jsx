@@ -13,6 +13,7 @@ const InputField = ({ label, name, type = 'text', value, onChange, icon: Icon })
                     value={value}
                     onChange={onChange}
                     className={`w-full ${Icon ? 'pl-3' : 'pl-3'} p-2 bg-transparent outline-none`}
+                    required
                 />
             </div>
         </div>
