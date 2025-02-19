@@ -26,6 +26,7 @@ import Portal from "./Portal";
 import UserCreate from "./UserCreate";
 import UserView from "./UserView";
 import UserEdit from "./UserEdit";
+import CarCreate from "./CarCreate";
 
 const App = () => {
   // Dark mode start
@@ -93,6 +94,8 @@ const App = () => {
               <Route path="create-user" element={<UserCreate />} />
               <Route path="user-view/:id" element={<UserView />} />
               <Route path="user-edit/:id" element={<UserEdit />} />
+
+              <Route path="create-car" element={<CarCreate theme={theme} />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>

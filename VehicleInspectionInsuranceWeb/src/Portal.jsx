@@ -2,7 +2,6 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
-import Userlist from './Userlist'
 
 function Portal() {
   return (
@@ -12,7 +11,7 @@ function Portal() {
         <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
             <Topbar />
-            <div className='container-fluid'>
+            <div className='container-fluid p-0'>
               <Outlet></Outlet>
             </div>
           </div>
