@@ -7,17 +7,17 @@ import { Car, Layout, Users, FileText, Settings, Clock, AlertCircle } from 'luci
 const menuItems = [
     { section: null, items: [{ to: "/portal/dashboard", icon: <Layout className="w-5 h-5" />, label: "Dashboard" }] },
     {
-        section: "Gestion Véhicules", items: [
-            { to: "/portal/car-list", icon: <Car className="w-5 h-5" />, label: "Liste Véhicules" },
+        section: "Vehicle Management", items: [
+            { to: "/portal/car-list", icon: <Car className="w-5 h-5" />, label: "Vehicle List" },
             { to: "/vehicles/maintenance", icon: <Settings className="w-5 h-5" />, label: "Maintenance" },
-            { to: "/vehicles/reports", icon: <FileText className="w-5 h-5" />, label: "Rapports" }
+            { to: "/vehicles/reports", icon: <FileText className="w-5 h-5" />, label: "Reports" }
         ]
     },
     {
         section: "Administration", items: [
-            { to: "/portal/user-list", icon: <Users className="w-5 h-5" />, label: "Utilisateurs" },
-            { to: "/logs", icon: <Clock className="w-5 h-5" />, label: "Historique" },
-            { to: "/alerts", icon: <AlertCircle className="w-5 h-5" />, label: "Alertes" }
+            { to: "/portal/user-list", icon: <Users className="w-5 h-5" />, label: "Users" },
+            { to: "/logs", icon: <Clock className="w-5 h-5" />, label: "History" },
+            { to: "/alerts", icon: <AlertCircle className="w-5 h-5" />, label: "Alerts" }
         ]
     }
 ];

@@ -21,13 +21,13 @@ import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
-import Userlist from "./Userlist";
 import Portal from "./Portal";
 import UserCreate from "./UserCreate";
 import UserView from "./UserView";
 import UserEdit from "./UserEdit";
 import CarCreate from "./CarCreate";
 import VehicleList from "./CarList";
+import UserList from "./UserList";
 
 const App = () => {
   // Dark mode start
@@ -92,7 +92,7 @@ const App = () => {
           <Routes>
             <Route path="/portal" element={<Portal theme={theme} />}>
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="user-list" element={<Userlist />} />
+              <Route path="user-list" element={<UserList />} />
               <Route path="create-user" element={<UserCreate />} />
               <Route path="user-view/:id" element={<UserView />} />
               <Route path="user-edit/:id" element={<UserEdit />} />

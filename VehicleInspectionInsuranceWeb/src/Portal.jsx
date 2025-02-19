@@ -9,9 +9,9 @@ function Portal({ theme }) {
       <div id="wrapper">
         <Sidebar theme={theme} />
         <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
+          <div id="content" className='dark:bg-[#404040] bg-[#fafafa] transition-all duration-200'>
             <Topbar />
-            <div className="container-fluid p-0 dark:bg-[#404040] bg-gray-50 transition-all duration-200">
+            <div className="container-fluid p-0">
               <Outlet></Outlet>
             </div>
           </div>

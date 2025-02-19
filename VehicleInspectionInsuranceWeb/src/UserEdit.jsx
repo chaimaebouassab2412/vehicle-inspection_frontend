@@ -75,7 +75,7 @@ function UserEdit() {
         }
     })
     return (
-        <>
+        <div className='p-5'>
             <h3>UserEdit - Id : {params.id} </h3>
             <div className='container'>
                 <form onSubmit={myFormik.handleSubmit}>
@@ -142,7 +142,7 @@ function UserEdit() {
                 </form>
                 {/* {JSON.stringify(myFormik.values)} */}
             </div>
-        </>
+        </div>
 
 
     )
