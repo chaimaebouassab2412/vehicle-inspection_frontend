@@ -19,8 +19,9 @@ const InputComponent = ({ label, name, value, onChange, type, placeholder, error
         >
           {name === 'status' ? (
             <>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
             </>
           ) : null}
         </select>
@@ -50,7 +51,7 @@ function UserCreate() {
       registration: "",
       date: "",
       car_model: "",
-      status: "active"
+      status: "Pending"
     },
     validate: (values) => {
       let errors = {};
