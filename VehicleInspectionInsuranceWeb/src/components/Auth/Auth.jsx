@@ -44,24 +44,20 @@ const Auth = () => {
 				? "http://localhost:2018/api/utilisateurs/register"
 				: "http://localhost:2018/api/utilisateurs/login";
 
-			console.log(values);
-
-
 			// Make Axios POST request
 			const response = await axios.post(endpoint, {
-				name: values.name,
+				nom: values.name,
 				email: values.email,
 				motDePasse: values.password,
 				...(isSignup && { confirmPassword: values.confirmPassword }), // Include confirmPassword for signup
 			});
 
-			console.log("Response:", response.data);
-
 			// Handle success (e.g., save token, navigate to dashboard)
 			if (response.data.token) {
-				localStorage.setItem("token", response.data.token); // Save token in localStorage
-				alert("Success! Redirecting...");
-				// Redirect logic here
+				localStorage.setItem("token", response.data.token);
+				localStorage.setItem("nom", response.data.nom);
+				localStorage.setItem("role", response.data.role);
+				location.href = '/portal/dashboard';
 			}
 
 			resetForm();

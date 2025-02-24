@@ -1,10 +1,19 @@
 import { faBell, faCircleUser, faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Topbar() {
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const name = localStorage.getItem('nom');
+        if (name) {
+            setUsername(name);
+        } else location.href = '/auth';
+    });
+
     return (
         <nav className="navbar navbar-expand navbar-light dark:bg-[#303030] bg-[#fff] transition-all duration-200 topbar static-top shadow">
             {/* <!-- Sidebar Toggle (Topbar) --> */}
@@ -176,7 +185,7 @@ function Topbar() {
                 <li className="nav-item dropdown no-arrow">
                     <Link className="nav-link dropdown-toggle" to="/" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">{username}</span>
                         <FontAwesomeIcon icon={faCircleUser} size={"xl"} />
                     </Link>
                     {/* <!-- Dropdown - User Information --> */}
